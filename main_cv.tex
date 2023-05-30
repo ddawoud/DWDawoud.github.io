@@ -1,209 +1,182 @@
-\documentclass[12pt,letterpaper]{report}
+% This template is designed to offer an aesthetically pleasing resume that adheres to a formal and institutional tone, making it suitable for applications to companies and research centers requiring a high degree of professionalism. Navy blue has been chosen as the primary color to align with these objectives.
+% The code is well-documented and annotated, allowing users to easily customize and modify it according to their needs. Please note that the template's content is meant to be humorous and should not be taken literally. We are grateful for your interest in using this template for your professional endeavors.
+% Author: Christian Maria Giannetti
 
-\usepackage[T1]{fontenc} % output T1 font encoding (8-bit) for accented characters as single glyph
-\usepackage[strict,autostyle]{csquotes} % smart and nestable quote marks
-\usepackage[USenglish]{babel} % regionalize hyphens, quote marks, etc automatically
-\usepackage{microtype}% improve text appearance with kerning, etc
-\usepackage{datetime} % enable formatting of date output
-\usepackage{tabto}    % make nice tabbing
-\usepackage{hyperref} % enable hyperlinks and pdf metadata
-\usepackage{geometry} % manually set page margins
-\usepackage{enumitem} % enumerate with [resume] option
-\usepackage{titlesec} % allow custom section fonts
-\usepackage{setspace} % custom line spacing
-\usepackage[maxcitenames=6, minnames=3 ]{biblatex}
-\addbibresource[]{biblio.bib}
+%----------------------------------------------------------------------------------------
+%  Packages And Other Document Configurations
+%----------------------------------------------------------------------------------------
 
-% what is your name?
-\newcommand{\myname}{Diana W. Dawoud}
+\documentclass{resume} % Use the custom resume.cls style
 
-% select default typefaces
-\usepackage{ebgaramond} % document's serif typeface
-\usepackage{tgheros}    % document's sans serif typeface
+% Document margins
+\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry}
 
-% how far to tab for list items with left-aligned date: different fonts need different widths
-\newcommand{\listtabwidth}{1.7cm}
+% Color and hyperlink packages
+\usepackage{xcolor}
+\usepackage{hyperref}
 
-% define font to use as document's title
-\newcommand{\namefont}[1]{{\normalfont\bfseries\Huge{#1}}}
+% Footnote and margin adjustment packages
+\usepackage{footnote}
+\usepackage{changepage}
 
-% set section heading fonts and before/after spacing
-\SetTracking{encoding=*, family=\sfdefault}{30} % increase sans serif headings tracking
-\titleformat{\section}{\lsstyle\sffamily\small\bfseries\uppercase}{}{}{}{}
-\titlespacing{\section}{0pt}{30pt plus 4pt minus 4pt}{8pt plus 2pt minus 2pt}
+% Fontawesome package for icons
+\usepackage{fontawesome}
 
-% set subsection heading fonts and before/after spacing
-\titleformat{\subsection}{\lsstyle\sffamily\footnotesize\bfseries}{}{}{}{}
-\titlespacing{\subsection}{0pt}{16pt plus 4pt minus 4pt}{4pt plus 2pt minus 2pt}
+% Tabularx package for custom tables
+\usepackage{tabularx}
 
-% set page margins (assumes letter paper)
-\geometry{body={6.5in, 9.0in},
-    left=1.0in,
-    top=1.0in}
+% Define navyblue color
+\definecolor{navyblue}{RGB}{0,54,123}
 
-% prevent paragraph indentation
-\setlength\parindent{0em}
+%----------------------------------------------------------------------------------------
+%   Customizations
+%----------------------------------------------------------------------------------------
 
-% set line spacing
-\setstretch{0.9}
+% Define italicitem, bolditem, and plainitem commands
+\newcommand{\italicitem}[1]{\item{\textit{#1}}}
+\newcommand{\bolditem}[1]{\item{\textbf{#1}}}
+\newcommand{\plainitem}[1]{\item{#1}}
 
-% define space between list items
-\newcommand{\listitemspace}{0.25em}
+% Define user-friendly link command for hyperlinks
+\newcommand{\link}[2]{{\href{#1}{#2}}}
 
-% make unordered lists without bullets and use compact spacing
-\renewenvironment{itemize}
-{\begin{list}{}{\setlength{\leftmargin}{0em}
-                \setlength{\parskip}{0em}
-                \setlength{\itemsep}{\listitemspace}
-                \setlength{\parsep}{\listitemspace}}}
-{\end{list}}
+\newcommand{\entry}[2]{#1 & #2 \tabularnewline} % Defines an entry with two arguments: #1 for the first column and #2 for the second column
 
-% make tabbed lists so content is left-aligned next to years
-\TabPositions{\listtabwidth}
-\newlist{tablist}{description}{3}
-\setlist[tablist]{leftmargin=\listtabwidth,
-    labelindent=0em,
-    topsep=0em,
-    partopsep=0em,
-    itemsep=\listitemspace,
-    parsep=\listitemspace,
-    font=\normalfont}
+%----------------------------------------------------------------------------------------
+%   Define envsection command for defining a new environment section
+%----------------------------------------------------------------------------------------
 
-% print only the month and year when using \today
-\newdateformat{monthyeardate}{\monthname[\THEMONTH] \THEYEAR}
-
-% define hyperlink appearance and metadata for pdf properties
-\hypersetup{
-    colorlinks  = true,
-    urlcolor    = black,
-    citecolor   = black,
-    linkcolor   = black,
-    pdfauthor   = {\myname},
-    pdfkeywords = {Deep Learning, Machine Learning, Smart Meter ,Social Computation},
-    pdftitle    = {\myname: Curriculum Vitae},
-    pdfsubject  = {Curriculum Vitae},
-    pdfpagemode = UseNone
+\newcommand{\tableEnv}[2]{%
+  \begin{rSection}{#1} % Begin rSection with the given name
+    \begin{adjustwidth}{0.0in}{0.1in} % Set the left and right margins
+      \begin{tabularx}{\linewidth}{@{} >{\bfseries}l @{\hspace{6ex}} X @{}}
+        #2 % Print the content inside the tabularx environment
+      \end{tabularx}
+    \end{adjustwidth}
+  \end{rSection}
 }
 
+%----------------------------------------------------------------------------------------
+%   Begin document
+%----------------------------------------------------------------------------------------
+
+% Set name with navyblue color
+\name{\color{navyblue} Carl Johnson (CJ)}
+
 \begin{document}
-    % \nobibliography*
-    \raggedright{}
 
-    % display your name as the document title
-    \namefont{\myname}
+\printPersonalInfo{
+  \personalInfo{\tag{Residence/domicile}\info{113, Groove Street}}
+  \personalInfo{\tag{E-mail}\info{pleasedonotcontactme@gmail.com} \infoSeparator\tag{Telephone number}\info{+1-202-555-0100}}
+  \personalInfo{\tag{Place of birth}\info{Ariccia, Italy} \infoSeparator\tag{Date of birth}\info{08-11-1968}}
+}
 
-    % affiliation and contact info blocks
-    \vspace{1em}
-    \begin{minipage}[t]{0.700\textwidth}
-        % current primary affiliation, left-aligned
-        Department of Computer Science and Engineering (CSE)\\
-        New Mexico Institute of Mining and Technology
-    \end{minipage}
-    \begin{minipage}[t]{0.295\textwidth}
-        % contact info details, right-aligned
-        \flushright{}
-        \href{mailto:zhirluo@gmail.com}{ddawoud@ud.ac.ae} \\
-        +1 575 418 0064 \\
-        \href{https://zhiruiluo.github.io}{zhiruiluo.github.io}\\
-        \href{https://orcid.org/0000-0002-3121-2597}{orcid:0000-0002-3121-2597}
-    \end{minipage}
+%----------------------------------------------------------------------------------------
+%   Education section
+%----------------------------------------------------------------------------------------
 
-    \section*{Education}
+\begin{rSection}{Education}
+
+    % Master's degree entry
+    \begin{rSubsectionNoBullet}{\bf Master's degree in Memeology and Unicorn Analytics}{Faber College}{Master's degree program}{February 2019 - April 2020}
+        \italicitem{Graduated with honors}
+        \italicitem{Thesis title: A deep learning approach to predicting the next Brexit: Unicorns vs. White Walkers}
+    \end{rSubsectionNoBullet}
     
-    \begin{tablist}
-      \item[Ph.D.] \tab{}CSE, New Mexico Institute of Mining and Technology, Socorro, USA, 2020-Now
-      \item[M.S.] \tab{}CSE, New Mexico Institute of Mining and Technology, Socorro, USA, 2018-2020
-      \item[B.S.] \tab{}CSE, New Mexico Institute of Mining and Technology, Socorro, USA, 2015-2017
-      \item[B.E.] \tab{}Software Engineering, Yangtze University, Jingzhou, China, 2012-2015
-    \end{tablist}
+    % Bachelor's degree entry
+    \begin{rSubsectionNoBullet}{\bf Bachelor's degree in Absurd Robotics Engineering}{Westeros University}{Bachelor's degree program}{May 2016 - August 2018}
+        \italicitem{Final grade: 9,001/10,000}
+        \italicitem{Capstone project: Design and implementation of a robot that makes toast using a flamethrower}
+    \end{rSubsectionNoBullet}
     
-    \section*{Research Areas}
-    \begin{itemize}
-      \item Smart meter: building occupancy detection, socio-demographic info identification, and load monitoring
-      \item Neural Architecture Search (NAS): automatic searching for better deep learning model architecture
-      \item Social computation: multi-modal deep learning method for rumor detection on social media
-      \item Computer Vision: deep learning plant leaf diseases detection and neural adversarial attack \& detection
-    \end{itemize}
+    % High School diploma entry
+    \begin{rSubsectionNoBullet}{\bf High School Diploma}{Rydell High School}{High school's diploma program}{June 2011 - May 2015}
+        \italicitem{Final grade: 7/7}
+        \italicitem{Senior project: Applying machine learning techniques to predict students' failure rates based on their meme consumption habits}
+    \end{rSubsectionNoBullet}
+
+\end{rSection}
+
+%----------------------------------------------------------------------------------------
+%   Work experience section
+%----------------------------------------------------------------------------------------
+
+\begin{rSection}{Work experience}
+
+    % First work experience entry
+    \begin{rSubsection}{Dank Memes Inc.}{September 2019 - September 2021}{Head of "Machine Learning for Absurd Stuff" Department}{Ariccia, Italy}
+        \item Developed state-of-the-art predictive models for next-generation memes.
+        \item Applied machine learning techniques to optimize unicorn-mounted laser systems.
+        \item Streamlined internal meme generation pipelines.
+    \end{rSubsection}
     
-    \section*{Publications}
-    \subsection*{Journal Articles}
-    \begin{tablist}
-        \item[2022] \tab{}\fullcite{li2022new}
-        \item[2022] \tab{}\fullcite{qi2022novel} 
-        \item[2021] \tab{}\fullcite{luo2021deep}
-        \item[2021] \tab{}\fullcite{luo2021study}
-        \item[2018] \tab{}\fullcite{zamani2018patterns}
-        \item[2015] \tab{}\fullcite{li2015research}
-    \end{tablist}
+    % Second work experience entry
+    \begin{rSubsection}{Viral News Robotics Laboratory (VNRL)}{March 2019 - July 2019}{Robotics Comedian Intern}{Fries, Virginia}
+        \item Engineered a robotic Tyrion Lannister that repeatedly asks, "Where's the wine?"
+    \end{rSubsection}
+    
+    % Third work experience entry
+    \begin{rSubsection}{Library of Alexandria 2.0}{January 2017 - April 2018}{Novelist}{Cut and Shoot, Texas}
+        \item Curated the "Dumb \& Dumber Guide to Classic Literature", featuring "Fifty Smudges 
+        of Gray", "Pride and Prejudice: smart girls can always find a way to rationalize marrying for money"
+        \item Hosted a weekly meme reading club on "Breadxit": the debate over whether bread should be banned from Europe
+    \end{rSubsection}
+    
+\end{rSection}
 
-    \subsection*{Conference Proceedings}
-    \begin{tablist}
-        \item[2022] \tab{}\fullcite{luo2022abode-net}
-        \item[2021] \tab{}\fullcite{li2021deep}
-    \end{tablist}
+%----------------------------------------------------------------------------------------
+%   Extracurricular activities section
+%----------------------------------------------------------------------------------------
 
-    % \section*{INVITED TALKS}
-    % \subsection*{Campus Talks}
+\begin{rSection}{Extracurricular activities}
 
-    \section*{Conference Activity}
-    \begin{tablist}
-        \item[2022] \tab{}The 7th International Conference on Smart Computing and Communication (SmartCom 2022), New York, USA
-        \item[2022] \tab{}NSF EPSCoR Workshop on Artificial Intelligence \& No-Boundary Thinking, Little Rock, Arkansa
-    \end{tablist}
+% First extracurricular entry
+\begin{rSubsectionNoBullet}{Procrastinators Anonymous: Machine Learning for Laziness}{November 2015}{Successfully delayed attending the course}{Rome, Italy}
+    \plainitem{Developed an AI that predicts the perfect moment to start binge-watching Dr. House episodes instead of working on important tasks.}
+\end{rSubsectionNoBullet}
 
-    \section*{Awards}
-    \subsection*{Awards and Honors}
-    \begin{tablist}
-        \item[2022] \tab{}Best Student Paper Award, SmartCom2022
-        \item[2022] \tab{}First Place Graduate Poster Award, New Mexico Research Symposium (NMRS)
-        \item[2022] \tab{}First Place Poster Winner, NM SMART Grid Center All Hands Meeting
-        \item[2022] \tab{}Second Place Graduate Poster Award, NMT Student Research Symposium
-    \end{tablist}
+% Third extracurricular entry
+\begin{rSubsectionNoBullet}{Dumb Literature Club: Famous Books with Ridiculous Twists}{June 2014 - Present}{Proud Member}{Popejoy, Iowa}
+    \plainitem{Regularly participate in discussions concerning famous literature works, such as "The Great Catsby", which is basically the Great Gatsby, but with cats.}
+\end{rSubsectionNoBullet}
 
-    \section*{Teaching}
-    \begin{tablist}
-        \item[2022 Summer] \tab{}Introductory-level Python course, Upward Bound Math and Science
-        \item[2020-2022] \tab{}Compiler Writing Lab
-        \item[2018-2022] \tab{}Teaching Assistant: Computer Network, Operating System, 
-    \end{tablist}
+\end{rSection}
 
-    \section*{Service}
-    \subsection*{Academic Journal and Conference Peer Review}
-    \begin{itemize}
-        \item IEEE Wireless Communications and Networking Conference (WCNC)
-        \item Scientific Reports
-        \item Knowledge-Based Systems
-        \item PeerJ Computer Science
-        \item Journal of King Saud University - Computer and Information Sciences 
-        \item The 36th ACM/SIGAPP Symposium On Applied Computing
-    \end{itemize}
+%----------------------------------------------------------------------------------------
+% Technical skills section
+%----------------------------------------------------------------------------------------
 
-    \section*{Research Labs and Assistantship}
-    \begin{tablist}
-        \item[2020-Now] \tab{}Research assistant at Human-Centered Computing and Security Lab, NMT
-        \item[2019-2021] \tab{}Graduate Assistant for REU in Cybersecurity, NMT
-        \item[2018-2020] \tab{}Research assistant at Sensor Security, Neural Network Lab, NMT
-        \item[2017 Summer] \tab{}Research assistant on optimization of twice-differetiable non-convex function
-        \item[2016-2017] \tab{}Robotics Lab Research, NMT
-    \end{tablist}
+\tableEnv{Technical skills}{
+    \entry{Programming Languages/Tools}{C, C++, Java, Javascript, Python, Prolog, \LaTeX, PigeonScript (for bird-based memes)}
+}
 
-    \section*{Certificates}
-    \begin{tablist}
-        % \item[2022] \tab{}Graduate Certificate in Cybersecurity
-        \item[2022] \tab{}Intel AI Analytics Toolkit Workshop
-        \item[2014] \tab{}IBM Academic Initiative Senior Software Development Engineer
-    \end{tablist}
+%----------------------------------------------------------------------------------------
+% Language proficiencies section
+%----------------------------------------------------------------------------------------
 
-    \section*{Professional Employment}
-    \begin{tablist}
-        \item[2018] \tab{}C++ Development, Zhejiang Guozi Robotics, Hangzhou, China
-    \end{tablist}
+\tableEnv{Language proficiencies}{
+    \entry{English}{Fluent in Shakespearean insults}
+    \entry{French}{Proficient in baguette related jokes}
+}
 
-    \section*{Skills}
-    \begin{tablist}
-        \item[Programming] \tab{}Python, C/C++, C\#, Java, JS, LaTex, Matlab
-        \item[Web] \tab{}\tab{}Flask, Bootstrap
-        \item[Deep Learning] \tab{}PyTorch, TensorFlow
-    \end{tablist}
+%----------------------------------------------------------------------------------------
+% Most relevant projects section
+%----------------------------------------------------------------------------------------
+
+\tableEnv{Portfolio of most relevant projects}{
+    \entry{Survey}{Analyzing the effects of replacing office chairs with unicycles on employee morale}
+    \entry{Survey}{Investigation of the therapeutic effects of watching cat videos for 8 hours a day}
+    \entry{Paper}{The correlation between sock loss in laundry and the existence of parallel universes}
+    \entry{Article}{The definitive study on the impact of pineapple as a pizza topping on global diplomacy}
+}
+
+%----------------------------------------------------------------------------------------
+% Memberships section
+%----------------------------------------------------------------------------------------
+
+\tableEnv{Memberships}{
+    \entry{Couch Potatoes Anonymous}{A support group for those addicted to binge-watching TV shows}
+    \entry{Procrastinators' Club}{A group that will eventually get around to doing something, someday}
+}
 
 \end{document}
