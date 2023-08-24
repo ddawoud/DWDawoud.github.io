@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Compile LaTex document
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/xlatex-action@v2
         with:
           root_file: main_cv.tex
       - name: Upload PDF file
